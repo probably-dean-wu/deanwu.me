@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react'
-import ProjectItem from './ProjectItem'
-import "../styles/Project.css"
-import { ProjectList } from "../helpers/ProjectList"
+import Page from '../components/Page';
+import ProjectCard from '../components/ProjectCard';
+import { projects } from '../data/projects';
 
-function Projects() {
-  useEffect(() => {
-    document.title = "Projects"
-  })
+export default function Projects() {
   return (
-    <div className='projects'> 
-      <h1> Projects</h1> 
-      <div className='projectList'> 
-      {ProjectList.map((project) => {
-        return <ProjectItem id = {project.id} name={project.name} image={project.image} date={project.date}/>
-      })}
+    <Page title="Projects" wide>
+      <h1>Projects</h1>
+      <p className="lead">Games, websites and hardware I've built.</p>
+      <div className="grid spaced">
+        {projects.map((p) => <ProjectCard key={p.name} {...p} />)}
       </div>
-    </div>
-  )
+    </Page>
+  );
 }
-export default Projects

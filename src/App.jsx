@@ -1,54 +1,48 @@
-import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Page from './components/Page';
 import Home from './pages/Home';
+import About from './pages/About';
 import Projects from './pages/Projects';
+import Elevator from './pages/Elevator';
 import Experience from './pages/Experience';
 import Awards from './pages/Awards';
-import About from './pages/About';
-import Blog from './pages/Blog';
-import Navbar from './components/Navbar';
-import '../src/styles/Navbar.css';
-import Footer from './components/Footer';
 import Resume from './pages/Resume';
-import SpringField from './projects/springfieldvillage';
-import HTML from './projects/htmlwebsite';
-import Website from './projects/reactwebsite';
-import Elevator from './projects/ArudinoElevator';
-import PMAS from './projects/pmas';
-import Mura from './projects/projectmura';
-import Proof from './notes/Proof';
-import Note from "./notes/Note";
-import Sets from "./notes/Sets_and_Proposition";
-import Logic from './notes/Logic';
-function App() {
+import Notes from './pages/notes/Notes';
+import IntroToProof from './pages/notes/IntroToProof';
+import SetsAndPropositions from './pages/notes/SetsAndPropositions';
+import Logic from './pages/notes/Logic';
 
+export default function App() {
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/projects" element={<Projects />}/>
-          <Route path="/experience" element={<Experience />}/>
-          <Route path="/awards" element={<Awards />}/>
-          <Route path='/about' element={<About />}/>
-          <Route path='/blog' element={<Blog />}/>
-          <Route path='/resume' element={<Resume />}/>
-          <Route path='/springfieldvillage' element={<SpringField />}/>
-          <Route path='/htmlwebsite' element={<HTML />}/>
-          <Route path='/reactwebsite' element={<Website />}/>
-          <Route path='/elevator' element={<Elevator />}/>
-          <Route path='/pmas' element={<PMAS />}/>
-          <Route path='/projectmura' element={<Mura />}/>
-          <Route path='/intro-to-proof' element={<Proof />} />
-          <Route path='/notes' element={<Note />} />
-          <Route path='/sets-and-propositions' element={<Sets />} />
-          <Route path='/logic' element={<Logic />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/elevator" element={<Elevator />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/awards" element={<Awards />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/intro-to-proof" element={<IntroToProof />} />
+        <Route path="/sets-and-propositions" element={<SetsAndPropositions />} />
+        <Route path="/logic" element={<Logic />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
-export default App;
+function NotFound() {
+  return (
+    <Page title="Page not found">
+      <h1>Page not found</h1>
+      <p className="lead">This page doesn't exist or has moved.</p>
+      <Link to="/">Go to the home page →</Link>
+    </Page>
+  );
+}

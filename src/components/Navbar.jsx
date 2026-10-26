@@ -1,45 +1,58 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import "../styles/Navbar.css";
-import ReorderIcon from '@mui/icons-material/Reorder';
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import CodeIcon from '@mui/icons-material/Code';
-import DescriptionIcon from '@mui/icons-material/Description';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import NoteIcon from '@mui/icons-material/Note';
-function Navbar() {
-  const [expandNavbar, setExpandNavbar] = useState(false);
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Sun, Moon } from './Icons';
 
-  const location = useLocation();
+const links = [
+  ['/about', 'About'],
+  ['/projects', 'Projects'],
+  ['/experience', 'Experience'],
+  ['/awards', 'Awards'],
+  ['/notes', 'Notes'],
+  ['/resume', 'Resume'],
+];
 
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(document.documentElement.dataset.theme);
+  const { pathname } = useLocation();
+
+  // Close the mobile menu and start each page at the top.
   useEffect(() => {
-    setExpandNavbar(false);
-  }, [location]);
+    setOpen(false);
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  function toggleTheme() {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    const apply = () => { document.documentElement.dataset.theme = next; };
+    // Crossfade between themes in browsers that support it.
+    document.startViewTransition ? document.startViewTransition(apply) : apply();
+    try { localStorage.theme = next; } catch (e) {}
+    setTheme(next);
+  }
 
   return (
-    <div className="navbar" id={expandNavbar ? "open" : "close"}>
-      <div className="toggleButton">
+    <header className={open ? 'nav open' : 'nav'}>
+      <div className="nav-inner">
+        <Link to="/" className="brand">Dean Wu</Link>
+        <nav className="nav-links">
+          {links.map(([to, label]) => (
+            <NavLink key={to} to={to}>{label}</NavLink>
+          ))}
+        </nav>
         <button
-          onClick={() => {
-            setExpandNavbar((prev) => !prev);
-          }}
+          className="icon-button theme-toggle"
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          onClick={toggleTheme}
         >
-          <ReorderIcon />
+          {theme === 'dark' ? <Sun /> : <Moon />}
+        </button>
+        <button className="menu" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+          <span />
+          <span />
         </button>
       </div>
-      <div className="links" >
-        <Link to="/" className={location.pathname === "/" ? "navBoxActive" : "navBox"}> <HomeIcon /> Home </Link>
-        <Link to="/about" className={location.pathname === "/about" ? "navBoxActive" : "navBox"}> <SearchIcon /> About </Link>
-        <Link to="/projects" className={location.pathname === "/projects" ? "navBoxActive" : "navBox"}> <CodeIcon /> Projects </Link>
-        <Link to="/experience" className={location.pathname === "/experience" ? "navBoxActive" : "navBox"}> <DescriptionIcon /> Experience </Link>
-        <Link to="/awards" className={location.pathname === "/awards" ? "navBoxActive" : "navBox"}> <EmojiEventsIcon /> Awards </Link>
-        <Link to="/notes" className={location.pathname === "/notes" ? "navBoxActive" : "navBox"}> <NoteIcon /> Notes </Link>
-        <Link to="/resume" className={location.pathname === "/resume" ? "navBoxActive" : "navBox"}> <AttachFileIcon /> Resume </Link>
-      </div>
-    </div>
+    </header>
   );
 }
-
-export default Navbar;

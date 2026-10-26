@@ -1,0 +1,5 @@
+# The pages of this site live inside the React app, so send any path that is not a real file to index.html.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
