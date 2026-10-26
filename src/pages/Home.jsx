@@ -37,7 +37,7 @@ export default function Home() {
       <ul className="rows work">
         {projects.filter((p) => p.featured).map((p) => (
           <li key={p.name}>
-            <img src={p.image} alt="" loading="lazy" />
+            <img src={p.thumb} alt="" width="64" height="64" loading="lazy" />
             <div>
               <strong>{p.name}</strong>
               <p className="muted">{p.description}</p>

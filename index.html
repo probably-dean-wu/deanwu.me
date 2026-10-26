@@ -6,13 +6,13 @@
     <meta name="description" content="Dean Wu, computer science student at the University of Toronto. Projects, experience, awards and notes." />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="/favicon.ico" />
+    <!-- One icon for the whole site: the SVG for modern browsers, the .ico for older ones. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <!-- Inter is the fallback for devices without Apple's San Francisco font. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+    <!-- Inter is the fallback for devices without Apple's San Francisco font. Preloading it avoids a late font swap. -->
+    <link rel="preload" href="/src/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>Dean Wu</title>
     <script>
       // Pick the theme before the page paints: saved choice first, then the device setting.
