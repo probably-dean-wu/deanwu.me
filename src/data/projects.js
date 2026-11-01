@@ -18,7 +18,7 @@ export const projects = [
     date: 2024,
     image: ReactWebsite,
     thumb: ReactWebsiteThumb,
-    description: 'The website you are on right now, built with React.',
+    description: 'The website you are on right now, built with React and Vite.',
     links: { Code: 'https://github.com/probably-dean-wu/deanwu.me' },
   },
   {
