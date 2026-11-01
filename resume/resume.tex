@@ -7,6 +7,8 @@
 
 \documentclass[letterpaper,11pt]{article}
 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -52,7 +54,7 @@
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{-1pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-5pt}
@@ -85,7 +87,7 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {University of Toronto}{Mississauga, Canada}
-      {Bachelor of Science in Computer Science, Statistics and Mathematics;}{Sep. 2023 -- May 2027}
+      {Bachelor of Science in Computer Science, Statistics and Mathematics;}{Sep. 2023 -- Present}
   \resumeSubHeadingListEnd
 
 
@@ -94,8 +96,22 @@
   \resumeSubHeadingListStart
 
     \resumeSubheading
+      {China Telecom (TeleAI)}{Beijing, China}
+      {LLM Engineer Intern}{May 2026 -- Aug. 2026}
+      \resumeItemListStart
+        \resumeItem{WeCom AI Assistant}
+          {Built a LangChain/LangGraph ReAct agent for WeCom (WeChat Work) that creates, reads, edits, and searches company documents and spreadsheets using LLMs (DeepSeek and Kimi), streaming replies over a persistent WebSocket connection with per-user conversation memory by using vector databases mixed with JSON metadata filtering.}
+        \resumeItem{Agent Skills \& Context Design}
+          {Built a modular skill architecture (docs, sheets, search, memory, file uploads) on a shared JSON tool dispatcher, and used Google's OKF method to give the LLM short Markdown skill summaries, so it knew its tools without being overloaded by lengthy descriptions, greatly speeding up responses.}
+        \resumeItem{Agent Gym}
+          {Contributed the harness-side agent loop for an internal agent gym (sandboxed RL environment) used for agent training and data synthesis: the agent plans a JSON TODO list of subtasks with shell check commands, the harness drives each step, then runs a final verification pass and re-prompts failed items with stdout/stderr feedback until checks pass.}
+        \resumeItem{Coding Harness}
+          {Helped design an internal coding-agent harness, contributing core features such as agent loop and auto-dreaming.}
+      \resumeItemListEnd
+
+    \resumeSubheading
       {UTASR (University of Toronto Autonomous Scale Racing)}{Toronto, Canada}
-      {Software \& Optimization Engineer}{Oct 2025 - Present}
+      {Software \& Optimization Engineer}{Oct 2025 - May 2026}
       \resumeItemListStart
         \resumeItem{Nvidia Jetson Orin NX}
           {Architecting a stable, high-performance runtime on a headless Jetson Orin NX , using Python multiprocessing and IPC queues to manage parallel ML and Data Engineering workloads.}
@@ -103,16 +119,6 @@
           {Developing a complete system automation and monitoring framework integrating Bash, cron, tegrastats, and htop to ensure low-overhead logging ($<$1ms) and rapid watchdog restarts ($<$5s).}
         \resumeItem{Remote System}
         {Implementing a robust remote orchestration system via SSH , delivering automated scripts for system startup, health checks, and repository updates.}
-      \resumeItemListEnd
-
-    \resumeSubheading
-      {Robotics Team | Loyola C.S.S.}{Mississauga, Canada}
-      {Lead Software Engineer}{Sep. 2022 - Mar. 2023}
-      \resumeItemListStart
-        \resumeItem{Automated Doorway System}
-          {Developed C++ firmware for an Arduino microcontroller to manage the control logic and actuation of an automated doorway system in a remote-controlled floor hockey robot.}
-        \resumeItem{Physical Structure}
-          {Designed and fabricated a custom chassis to house and integrate the control system (Arduino, sensors, actuators) for a remote-controlled floor hockey robot.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -149,7 +155,7 @@
      \textbf{Languages}{: Python, Java, GameMaker Language, RISC-V Assembly, C++}
    }
    \item{
-     \textbf{Technologies}{: React, MUI, NPM, Upstash, NodeJS, Raspberry Pi, Arduino, Git}
+     \textbf{Technologies}{: LangChain, LangGraph, ChromaDB, asyncio, Pydantic, pytest, React, MUI, NPM, Upstash, NodeJS, Raspberry Pi, Arduino, Git}
    }
  \resumeSubHeadingListEnd
 
